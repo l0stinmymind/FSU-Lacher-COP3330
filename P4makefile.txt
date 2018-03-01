@@ -1,0 +1,25 @@
+
+# makefile for proj4
+
+
+LIB=/home/courses/cop3330p/LIB
+CC=g++ -std=c++11 -I. -I$(LIB)/cpp -Wall -Wextra
+
+all : stester.x vtester.x
+stester.x : shapes.o stester.o
+	$(CC) -o stester.x shapes.o stester.o
+
+stester.o : stester.cpp shapes.h
+	$(CC) -c stester.cpp shapes.h
+
+shapes.o : shapes.cpp shapes.h
+	$(CC) -c shapes.cpp shapes.h
+
+vtester.x : vehicles.o vtester.o shapes.o
+	$(CC) -o vtester.x vehicles.o vtester.o shapes.o
+
+vtester.o : vtester.cpp vehicles.h  shapes.h
+	$(CC) -c vtester.cpp 
+
+vehicles.o : vehicles.cpp vehicles.h 
+	$(CC) -c vehicles.cpp 
