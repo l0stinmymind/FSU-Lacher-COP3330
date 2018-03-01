@@ -1,0 +1,47 @@
+#
+# partial makefile for DOT Fastlane project
+# to be completed by student
+#
+
+cflags = -I. -Wall -Wextra
+#CC = clang++ -std=c++11
+CC = g++ -std=c++11
+AREA51 = /home/courses/cop3330p/LIB/area51
+all :tracker.x
+# build executables
+
+tracker.x: tracker.o shapes.o vehicles.o
+	$(CC) -otracker.x tracker.o shapes.o vehicles.o
+stester.x : shapes.o stester.o
+	$(CC) -ostester.x shapes.o stester.o
+vtester.x : vehicles.o vtester.o shapes.o
+	$(CC) -ovtester.x vehicles.o vtester.o shapes.o
+
+# build object code files
+
+tracker.o: shapes.h vehicles.h tracker.cpp
+	$(CC) $(cflags) -c tracker.cpp
+stester.o : stester.cpp shapes.h
+	$(CC) $(cflags) -c stester.cpp
+shapes.o : shapes.h  shapes.cpp
+	$(CC) $(cflags) -c shapes.cpp
+vehicles.o : vehicles.h vehicles.cpp
+	$(CC) $(cflags) -c vehicles.cpp
+vtester.o : vtester.cpp vehicles.h  shapes.h
+	$(CC) $(cflags) -c vtester.cpp
+vehicles.o : vehicles.cpp vehicles.h
+	$(CC) $(cflags) -c vehicles.cpp
+
+
+
+
+tracker_i.x: $(AREA51)/tracker_i.x
+	cp  $(AREA51)/tracker_i.x .
+	chmod 700 tracker_i.x
+stester_i.x: $(AREA51)/stester_i.x
+	cp   $(AREA51)/stester_i.x .
+	chmod 700 stester_i.x
+vtester_i.x: $(AREA51)/vtester_i.x
+	cp   $(AREA51)/vtester_i.x .
+	chmod 700 vtester_i.x
+
