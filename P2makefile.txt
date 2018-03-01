@@ -1,0 +1,19 @@
+#
+# makefile for proj2
+
+all: idtest1.x idtest2.x
+
+idtest1.x:  idtest1.o id.o
+	g++ -std=c++11 -Wall -Wextra -oidtest1.x idtest1.o id.o
+
+idtest2.x:  idtest2.o id.o
+	g++ -std=c++11 -Wall -Wextra -oidtest2.x:  idtest2.o id.o
+
+id.o:   id.h id.cpp
+	g++ -std=c++11 -Wall -Wextra -c -I. id.cpp
+
+idtest1.o:   id.h idtest1.cpp
+	g++ -std=c++11 -Wall -Wextra -c -I. idtest1.cpp
+
+idtest2.o:   id.h idtest2.cpp
+	g++ -std=c++11 -Wall -Wextra -c -I. idtest2.cpp
